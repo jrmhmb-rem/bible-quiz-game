@@ -193,3 +193,63 @@ input, select {
 .resetBtn:hover{
   background: darkred;
 }
+/* ===== MOBILE FIX ===== */
+@media (max-width: 768px) {
+
+/* prevent overflow */
+body {
+overflow-x: hidden;
+}
+
+/* make container fit phone */
+.quiz-box {
+width: 95%;
+margin: 10px auto;
+padding: 15px;
+}
+
+/* buttons easier to tap */
+button {
+width: 100%;
+padding: 12px;
+font-size: 16px;
+}
+
+/* inputs full width */
+input, select {
+width: 100%;
+font-size: 16px;
+}
+
+/* answers stacked */
+#answers {
+display: flex;
+flex-direction: column;
+}
+
+#answers button {
+width: 100%;
+}
+
+/* fix overlay size */
+.overlay {
+width: 100%;
+height: 100%;
+padding: 10px;
+}
+
+.gameover-box {
+width: 95%;
+}
+
+/* readable text */
+h1 { font-size: 20px; }
+h2 { font-size: 18px; }
+
+}
+
+/* small phones */
+@media (max-width: 400px) {
+h1 { font-size: 18px; }
+button { font-size: 14px; }
+}
