@@ -4,55 +4,58 @@
 body {
   font-family: Arial, sans-serif;
   background: #f5f5f5;
-  margin: 0;
+  color: #000;
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 /* =========================
-   BOX
+   QUIZ BOX
 ========================= */
 .quiz-box {
-  width: 95%;
+  width: 90%;
   max-width: 600px;
-  margin: 20px auto;
-  padding: 15px;
+  margin: 40px auto;
+  padding: 20px;
   border-radius: 12px;
-  background: white;
+  background: #ffffff;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  animation: fadeIn 0.4s ease;
 }
 
-/* =========================
-   TEXT
-========================= */
-h1 { font-size: 22px; }
-h2 { font-size: 18px; }
-h3 { font-size: 16px; }
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(10px);}
+  to {opacity:1; transform: translateY(0);}
+}
 
 /* =========================
    BUTTONS
 ========================= */
 button {
-  width: 100%;
-  padding: 12px;
-  margin: 6px 0;
+  padding: 10px 15px;
+  margin: 6px;
   border: none;
-  border-radius: 8px;
   background: #e0e0e0;
-  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.2s;
   font-weight: bold;
 }
 
 button:hover {
-  background: black;
-  color: white;
+  background: #000;
+  color: #fff;
 }
 
-/* ANSWERS */
-#answers button {
-  width: 100%;
+/* LOCKED BUTTON */
+button:disabled {
+  pointer-events: none;
+  opacity: 0.8;
 }
 
-/* STATES */
+/* ANSWER STATES */
 .correct {
   background: #4CAF50 !important;
   color: white;
@@ -63,28 +66,58 @@ button:hover {
   color: white;
 }
 
-/* =========================
-   INPUT
-========================= */
-input, select {
-  width: 100%;
-  padding: 10px;
-  margin: 6px 0;
-  font-size: 16px;
+/* SELECTED CLICK EFFECT */
+.selected {
+  outline: 3px solid #333;
 }
 
 /* =========================
-   PROGRESS
+   INPUTS
 ========================= */
+input, select {
+  padding: 8px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* =========================
+   PROGRESS BAR
+========================= */
+.progress {
+  margin-bottom: 10px;
+}
+
 .progress-bar {
-  height: 6px;
+  height: 8px;
   width: 0%;
   background: #4CAF50;
   border-radius: 5px;
+  transition: width 0.3s;
 }
 
 /* =========================
-   OVERLAY
+   SCOREBOARD
+========================= */
+#scoreboard {
+  margin-bottom: 10px;
+}
+
+#livesBoard {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+.backButton {
+  position: static;
+  margin-top: 15px;
+}
+
+/* =========================
+   GAME OVER
 ========================= */
 .overlay {
   display: none;
@@ -96,48 +129,67 @@ input, select {
   background: rgba(0,0,0,0.8);
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 
-/* BOX INSIDE OVERLAY */
 .gameover-box {
-  width: 90%;
-  max-width: 400px;
   background: white;
   padding: 20px;
   border-radius: 10px;
 }
-
 /* =========================
-   PAUSE BUTTON (FLOATING)
+   ANSWERS - VERTICAL LAYOUT
 ========================= */
-#pauseBtn {
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background: black;
-  color: white;
-  font-size: 18px;
+/* =========================
+   ANSWERS - VERTICAL CENTERED
+========================= */
+#answers {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
-/* =========================
-   LEADERBOARD BUTTON
-========================= */
-.resetBtn {
+#answers button {
+  width: 100%;
+  margin: 6px 0;
+  text-align: center; /* 👈 centers text */
+}
+.highScoreBanner{
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: gold;
+  color: black;
+  padding: 15px 25px;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 10px;
+  z-index: 9999;
+  text-align: center;
+  animation: popIn 0.5s ease;
+}
+
+@keyframes popIn{
+  0%{ transform: translateX(-50%) scale(0); }
+  100%{ transform: translateX(-50%) scale(1); }
+}
+
+.fadeOut{
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.resetBtn{
+  margin-top: 10px;
+  padding: 8px 15px;
+  border: none;
   background: red;
   color: white;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.resetBtn:hover {
+.resetBtn:hover{
   background: darkred;
-}
-
-/* =========================
-   MOBILE EXTRA
-========================= */
-@media (max-width: 400px) {
-  h1 { font-size: 18px; }
-  button { font-size: 14px; }
 }
