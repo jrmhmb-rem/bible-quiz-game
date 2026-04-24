@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bible Quiz Multiplayer</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- START SCREEN -->
+<div class="quiz-box" id="startScreen">
+    <button onclick="toggleLeaderboard()">🏆 Top Players</button>
+    <button onclick="openSettings()">⚙️ Settings</button>
+    <div id="leaderboardBox" class="overlay" style="display:none;">
+      <div class="gameover-box">
+        <h2>🏆 Top Players</h2>
+        <div id="highScores"></div>
+        <button onclick="resetLeaderboard()" class="resetBtn">
+  Reset Leaderboard
+</button>
+        <button onclick="toggleLeaderboard()">Close</button>
+      </div>
+    </div>
+
+    <h1>Bible Quiz Game</h1>
+    <p>Test your Bible knowledge!</p>
+
+
+    <button onclick="startGame()">Start Game</button>
+</div>
+
+<div id="settingsMenu" class="overlay" style="display:none;">
+  <div class="gameover-box">
+    <h2>⚙️ Settings</h2>
+
+    <label>
+      🔊 Sound Effects:
+      <select id="soundToggle">
+        <option value="on">ON</option>
+        <option value="off">OFF</option>
+      </select>
+    </label>
+    <br><br>
+
+    <label>
+      ⏱ Default Timer:
+      <select id="defaultTimer">
+        <option value="off">OFF</option>
+        <option value="10">10 sec</option>
+        <option value="15">15 sec</option>
+      </select>
+    </label>
+    <br><br>
+
+    <button onclick="saveSettings()">💾 Save</button>
+    <button onclick="closeSettings()">❌ Close</button>
+  </div>
+</div>
+<!-- MODE SELECTION -->
+<div class="quiz-box" id="modeBox" style="display:none;">
+    <h2>Select Mode</h2>
+    <button onclick="chooseMode('solo')">Singleplayer</button>
+    <button onclick="chooseMode('multi')">Multiplayer</button>
+    <button class="backButton">⬅ Back to Start</button>
+</div>
+
+<!-- NAME ENTRY -->
+<div class="quiz-box" id="nameBox" style="display:none;">
+    <h2>Enter Player Name(s)</h2>
+    <input type="text" id="player1Name" placeholder="Player 1 Name">
+    <input type="text" id="player2Name" placeholder="Player 2 Name">
+
+    <h3>Select Number of Questions</h3>
+    <select id="numQuestionsSelect">
+        <option value="10">10</option>
+        <option value="20" selected>20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="100">All</option>
+    </select>
+
+        <h3>Timer</h3>
+    <select id="timerSelect">
+        <option value="off">OFF</option>
+        <option value="10">10 seconds</option>
+        <option value="15">15 seconds</option>
+    </select>
+
+    <button onclick="startQuiz()">Start Quiz</button>
+    <button class="backButton">⬅ Back</button>
+</div>
+
+<!-- QUIZ BOX -->
+<div class="quiz-box" id="quizBox" style="display:none;">
+    <div class="progress">
+        <div id="timer"></div>
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div id="scoreboard">
+        <div id="livesBoard"></div>    
+        <div id="scorePlayer1"></div>
+        <div id="scorePlayer2"></div>
+    </div>
+
+    <div id="playerTurn"></div>
+    <h2 id="question"></h2>
+    <div id="answers"></div>
+    <div id="verse"></div>
+    <h3 id="score"></h3>
+
+    <!-- PAUSE BUTTON -->
+    <button id="pauseBtn">⏸</button>
+</div>
+
+<!-- PAUSE MENU -->
+<div id="pauseMenu" class="overlay" style="display:none;">
+  <div class="gameover-box">
+    <h2>⏸ Paused</h2>
+    <button id="pauseResumeBtn" onclick="resumeGame()">▶ Resume</button>
+    <button id="pauseRestartBtn">🔄 Restart</button>
+    <button onclick="goToStartScreen()">🏠 Quit</button>
+  </div>
+</div>
+
+<!-- AUDIO -->
+<audio id="correctSound" src="sounds/correct.mp3"></audio>
+<audio id="wrongSound" src="sounds/wrong.mp3"></audio>
+<audio id="timeUpSound" src="sounds/wrong.mp3"></audio>
+<audio id="countdownSound" src="sounds/countdown.mp3"></audio>
+<audio id="gameOverSound" src="sounds/gameover.mp3"></audio>
+<audio id="highScoreSound" src="sounds/soundshighscore.mp3"></audio>
+<audio id="finishSound" src="sounds/finish.mp3"></audio>
+
+<!-- GAME OVER SCREEN -->
+<div id="gameOverScreen" class="overlay" style="display:none;">
+  <div class="gameover-box">
+    <h1>💀 GAME OVER</h1>
+    <p id="gameOverMessage"></p>
+    <button id="gameOverRestartButton">Play Again</button>
+    <button id="gameOverBackButton">Back to Start</button>
+  </div>
+</div>
+
+</body>
+</html>
