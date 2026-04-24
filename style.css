@@ -4,58 +4,55 @@
 body {
   font-family: Arial, sans-serif;
   background: #f5f5f5;
-  color: #000;
-  text-align: center;
   margin: 0;
-  padding: 0;
+  text-align: center;
 }
 
 /* =========================
-   QUIZ BOX
+   BOX
 ========================= */
 .quiz-box {
-  width: 90%;
+  width: 95%;
   max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
+  margin: 20px auto;
+  padding: 15px;
   border-radius: 12px;
-  background: #ffffff;
+  background: white;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  animation: fadeIn 0.4s ease;
 }
 
-@keyframes fadeIn {
-  from {opacity:0; transform: translateY(10px);}
-  to {opacity:1; transform: translateY(0);}
-}
+/* =========================
+   TEXT
+========================= */
+h1 { font-size: 22px; }
+h2 { font-size: 18px; }
+h3 { font-size: 16px; }
 
 /* =========================
    BUTTONS
 ========================= */
 button {
-  padding: 10px 15px;
-  margin: 6px;
+  width: 100%;
+  padding: 12px;
+  margin: 6px 0;
   border: none;
+  border-radius: 8px;
   background: #e0e0e0;
-  color: #000;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: 0.2s;
+  font-size: 16px;
   font-weight: bold;
 }
 
 button:hover {
-  background: #000;
-  color: #fff;
+  background: black;
+  color: white;
 }
 
-/* LOCKED BUTTON */
-button:disabled {
-  pointer-events: none;
-  opacity: 0.8;
+/* ANSWERS */
+#answers button {
+  width: 100%;
 }
 
-/* ANSWER STATES */
+/* STATES */
 .correct {
   background: #4CAF50 !important;
   color: white;
@@ -66,58 +63,28 @@ button:disabled {
   color: white;
 }
 
-/* SELECTED CLICK EFFECT */
-.selected {
-  outline: 3px solid #333;
-}
-
 /* =========================
-   INPUTS
+   INPUT
 ========================= */
 input, select {
-  padding: 8px;
-  margin: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  font-size: 16px;
 }
 
 /* =========================
-   PROGRESS BAR
+   PROGRESS
 ========================= */
-.progress {
-  margin-bottom: 10px;
-}
-
 .progress-bar {
-  height: 8px;
+  height: 6px;
   width: 0%;
   background: #4CAF50;
   border-radius: 5px;
-  transition: width 0.3s;
 }
 
 /* =========================
-   SCOREBOARD
-========================= */
-#scoreboard {
-  margin-bottom: 10px;
-}
-
-#livesBoard {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-/* =========================
-   BACK BUTTON
-========================= */
-.backButton {
-  position: static;
-  margin-top: 15px;
-}
-
-/* =========================
-   GAME OVER
+   OVERLAY
 ========================= */
 .overlay {
   display: none;
@@ -129,67 +96,48 @@ input, select {
   background: rgba(0,0,0,0.8);
   justify-content: center;
   align-items: center;
-  z-index: 999;
 }
 
+/* BOX INSIDE OVERLAY */
 .gameover-box {
+  width: 90%;
+  max-width: 400px;
   background: white;
   padding: 20px;
   border-radius: 10px;
 }
-/* =========================
-   ANSWERS - VERTICAL LAYOUT
-========================= */
-/* =========================
-   ANSWERS - VERTICAL CENTERED
-========================= */
-#answers {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
 
-#answers button {
-  width: 100%;
-  margin: 6px 0;
-  text-align: center; /* 👈 centers text */
-}
-.highScoreBanner{
+/* =========================
+   PAUSE BUTTON (FLOATING)
+========================= */
+#pauseBtn {
   position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: gold;
-  color: black;
-  padding: 15px 25px;
-  font-size: 22px;
-  font-weight: bold;
-  border-radius: 10px;
-  z-index: 9999;
-  text-align: center;
-  animation: popIn 0.5s ease;
+  bottom: 15px;
+  right: 15px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: black;
+  color: white;
+  font-size: 18px;
 }
 
-@keyframes popIn{
-  0%{ transform: translateX(-50%) scale(0); }
-  100%{ transform: translateX(-50%) scale(1); }
-}
-
-.fadeOut{
-  opacity: 0;
-  transition: 0.5s;
-}
-
-.resetBtn{
-  margin-top: 10px;
-  padding: 8px 15px;
-  border: none;
+/* =========================
+   LEADERBOARD BUTTON
+========================= */
+.resetBtn {
   background: red;
   color: white;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
-.resetBtn:hover{
+.resetBtn:hover {
   background: darkred;
+}
+
+/* =========================
+   MOBILE EXTRA
+========================= */
+@media (max-width: 400px) {
+  h1 { font-size: 18px; }
+  button { font-size: 14px; }
 }
